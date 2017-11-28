@@ -1,13 +1,14 @@
-var SPACE_KEY = 32;
-
-function Mammoth(canvas, height, xPosition){
+function Mammoth(canvas, ctx, height, xPosition, jumpKey){
+   // mammoth fixed properties
    this.canvas = canvas;
-   this.ctx = this.canvas.getContext('2d');
+   this.ctx = ctx;
    this.height = height;
    //this.sprite = sprite;
    this.xPosition = xPosition;
+   this.jumpKey = jumpKey;
+   // mammoth fixed properties
    this.y = 0;
-   this.vx = 0;
+   this.vx = 0.1;
    this.vy = 0;
    this.gravity = -0.4;
  }
@@ -24,6 +25,7 @@ function Mammoth(canvas, height, xPosition){
    }else{
      this.y = 0;
    }
+   //console.log(game.board.angle);
  };
 
 Mammoth.prototype.jump = function (){
@@ -32,9 +34,7 @@ Mammoth.prototype.jump = function (){
 };
 
 Mammoth.prototype.doKeyDown = function (event) {
-  if(event.keyCode == SPACE_KEY){
+  if(event.keyCode == this.jumpKey){
     this.jump();
   }
 };
-
-// var m1 = new Mammoth("canvas", 50, 0);

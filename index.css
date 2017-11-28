@@ -1,0 +1,21 @@
+canvas{
+  border: 1px solid pink;
+  margin-top: 250px;
+  /*background-color: pink;*/
+}
+
+body{
+  text-align: center;
+  /*background-image: url("images/bg.png");*/
+  background-size: 100%;
+}
+body button {
+  font-size: 20px;
+  background-color: pink;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 25px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+}

@@ -3,13 +3,14 @@ function Game(canvas){
   this.ctx = this.canvas.getContext('2d');
 
   // I add mammoths and the board to the game
-  this.m1 = new Mammoth(this.canvas, this.ctx, 50, 0, 32);
+  this.m1 = new Mammoth(this.canvas, this.ctx, 80, -300, 32, "images/Mammoth6.png");
   this.board = new Board(this.canvas, this.ctx);
   // more mammoths???
-  this.m2 = new Mammoth(this.canvas, this.ctx, 80, -100, 38);
-  this.m3 = new Mammoth(this.canvas, this.ctx, 90, -250, 13);
-  this.m4 = new Mammoth(this.canvas, this.ctx, 20, -300, 16);
-  //mammoth Key code
+  this.m2 = new Mammoth(this.canvas, this.ctx, 100, -200, 38, "images/Mammoth10.png");
+  this.m3 = new Mammoth(this.canvas, this.ctx, 110, -100, 13, "images/Mammoth23.png");
+  this.m4 = new Mammoth(this.canvas, this.ctx, 130, 100, 16, "images/Mammoth69.png");
+
+  //mammoths Key codes
   // m1 Space_KEY = 32;
   // m3 Up_KEY = 38;
   // m2 Enter_KEY = 13;

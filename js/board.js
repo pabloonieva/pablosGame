@@ -9,7 +9,7 @@ function Board(canvas, ctx) {
   this.degreeToRad = -Math.PI/180;
   // variable properties
   this.angle = 0;
-  this.angleRotation = 0.05;
+  this.angleRotation = 0.3;
   this.ctx.rotate(this.degreeToRad*this.angleRotation);
 
    //Is it wrong this way?
@@ -28,7 +28,7 @@ Board.prototype.drawSkyline = function () {
 //move horizon
 Board.prototype.moveSkyline = function(){
   if(this.angle > 20){
-    this.angleRotation *= 0;
+    this.angleRotation *= -1;
   }else if(this.angle < -20){
     this.angleRotation *= -1;
   }

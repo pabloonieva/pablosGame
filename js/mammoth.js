@@ -12,7 +12,6 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
    this.y = 0;
    this.vx = 0.3;
    this.vy = 0;
-   this.gravity = -0.25;
    this.timeFirstPosition = 0;
 
  }
@@ -58,12 +57,12 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
   }
   // vertical speed inteligence (jump and gravity)
   if(this.y > 0){
-     this.vy += this.gravity;
+     this.vy += game.board.gravity;
+     console.log(game.board.gravity);
      this.y += this.vy;
   }else{
     this.y = 0;
   }
-  //game.firstMammoth();
 };
 
 

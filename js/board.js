@@ -11,11 +11,12 @@ function Board(canvas, ctx, backgroundImage) {
 
   // board variable properties
   this.angle = 0;
-  this.angleRotation = 0.05;
+  this.angleRotation = 0.03;
   this.ctx.rotate(this.degreeToRad*this.angleRotation);
   this.imagex = -450;
   this.imageVx = 5;
   this.imagey = -370;
+  this.gravity = -0.26;
    //Is it wrong this way?
    //document.dokeydown = this.m1.doKeyDown.bind(this.m1);
 }
@@ -50,4 +51,6 @@ Board.prototype.moveSkyline = function(){
   this.angle += this.angleRotation;
   this.imageVx = this.angle*1.5;
   this.ctx.rotate(this.degreeToRad*this.angleRotation);
+  // integence to gravity depending on the angle
+  this.gravity = -0.25 + (Math.abs(this.angle)*0.003);
 };

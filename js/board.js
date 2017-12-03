@@ -2,16 +2,15 @@ function Board(canvas, ctx, backgroundImage) {
   this.canvas = canvas;
   this.ctx = ctx;
 
-  // main board properties
-  // fix properties
+  // board fix properties
   this.ctx.translate(400,450);
   this.ctx.scale(1,-1);
   this.degreeToRad = -Math.PI/180;
   this.backgroundImage = new Image();
   this.backgroundImage.src = backgroundImage;
 
-  // variable properties
-  this.angle = 5;
+  // board variable properties
+  this.angle = 0;
   this.angleRotation = 0.05;
   this.ctx.rotate(this.degreeToRad*this.angleRotation);
   this.imagex = -450;
@@ -34,12 +33,11 @@ Board.prototype.drawSkyline = function () {
   }else{
     this.imagex = -450;
   }
-
-
+  // when the background was a simple line...
   // this.ctx.beginPath();
   // this.ctx.moveTo(-500,0);
   // this.ctx.lineTo(500,0);
-  this.ctx.stroke();
+  //this.ctx.stroke();
 };
 
 //move horizon

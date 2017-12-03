@@ -1,6 +1,6 @@
 canvas{
   border: 1px solid pink;
-  margin-top: 250px;
+  margin-top: 20px;
   background-color: #51c4e0;
 }
 
@@ -18,4 +18,44 @@ body button {
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
+}
+header{
+  display: flex;
+  justify-content: center;
+}
+header img{
+  height: 200px
+}
+#title{
+    height: 50px;
+    width: 100%;
+}
+#game{
+  display: flex;
+  justify-content: space-between;
+  height: 180px;
+}
+#game > div{
+  font-family: serif;
+  font-style: italic;
+  font-weight: bold;
+  border: 1px solid pink;
+  margin: 0px 60px;
+  padding: 10px;
+  width: 200px;
+}
+#clasification h1{
+  margin: 1px;
+  font-size: 27px;
+}
+#firstPosition h1{
+  margin: 1px;
+  font-size: 30px;
+
+}
+#firstPosition img{
+  transform: rotate(180deg);
+  height: 100px;
+  width: auto;
+  padding: 10px;
 }

@@ -11,6 +11,7 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
    this.vx = 0.3;
    this.vy = 0;
    this.gravity = -0.3;
+   this.timeFirstPosition = 0;
 
    //working with the image
    this.img = new Image();
@@ -25,26 +26,38 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
    // this.ctx.fillRect(this.x,this.y,this.size,this.size);
    // this.ctx.stroke();
 
+   // horizontal speed inteligence with and without collision
    if(this.checkCollision()){
-     // horizontal speed collision when collision
+     // with collision
      this.collision();
    }else{
-     // horizontal speed inteligence when no collision
+     // without collision
      if(this.x > 400){
-       this.vx += -0.5;
+       this.vx += -0.04;
+     }else if(this.x > 300){
+       this.vx += -0.03;
      }else if(this.x > 200){
-       this.vx += -0.05;
-     }else if(this.x > 0){
        this.vx += -0.01;
+     }else if(this.x > 100){
+       this.vx += 0;
+     }else if(this.x > 0){
+       this.vx += 0;
+     }else if(this.x > -100){
+       this.vx += 0;
      }else if(this.x > -200){
-       this.vx += 0.01;
+       this.vx += 0.02;
      }else{
-       this.vx += 0.05;
+       this.vx += 0.03;
      }
   }
-
-  this.x += this.vx;
-
+  // add maximum speed
+  if(this.vx > 6){
+    this.vx = 5;
+  }else if(this.vx < - 6){
+    this.vx = -5;
+  }else{
+    this.x += this.vx;
+  }
   // vertical speed inteligence (jump and gravity)
   if(this.y > 0){
      this.vy += this.gravity;
@@ -56,14 +69,45 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
 
 
 Mammoth.prototype.checkCollision = function(){
+  // var mammoth2 = game.listOfMammoth[i];
   for(i=0; i<game.listOfMammoth.length; i++){
+    var mammoth2 = game.listOfMammoth[i];
+
     if(this.name == game.listOfMammoth[i].name){
+
       // I cant collision with myself -> nothing happens
     }else{
-      if(this.x + this.size > game.listOfMammoth[i].x && this.x + this.size - 20 < game.listOfMammoth[i].x){
-        return true;
+      if(this.x + this.size > game.listOfMammoth[i].x &&
+         this.x + this.size - game.listOfMammoth[i].size < game.listOfMammoth[i].x &&
+         this.y + this.size > game.listOfMammoth[i].y &&
+         this.y < game.listOfMammoth[i].y + game.listOfMammoth[i].size){
+           //console.log("chocan también vertical!");
+           return true;
       }
+
+
+        // console.log("hay choque horizontal");
+        // console.log(this.y);
+        // console.log(this.img.height);
+        // console.log(game.listOfMammoth[i].y);
+        // console.log(game.listOfMammoth[i].img.height);
+
+
+
+      // https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection  ?¿?¿
+      // if (this.x < game.listOfMammoth[i].x + game.listOfMammoth[i].width &&
+      //     this.x + this.width > game.listOfMammoth[i].x &&
+      //     this.y < game.listOfMammoth[i].y + game.listOfMammoth[i].height &&
+      //     this.height + this.y > game.listOfMammoth[i].y){
+      //   console.log("Choque frontal del " + this.name);
+      //   return true;
+      // }
+
     }
+    // if(this.x + this.size > game.listOfMammoth[i].x && this.x < game.listOfMammoth[i].x + game.listOfMammoth[i].size){
+    //   this.y = game.listOfMammoth[i].size;
+    // }
+
   }
 };
 
@@ -74,14 +118,13 @@ Mammoth.prototype.collision = function(){
     }else{
       if(this.x + this.size > game.listOfMammoth[i].x){
         //collision front. This mammoth goes back, the other one goes front
-        this.vx += -1.5;
+        this.vx += -1;
         game.listOfMammoth[i].vx += 1;
       }
     }
   }
 
 };
-
 
 
 Mammoth.prototype.jump = function (){
@@ -93,9 +136,14 @@ Mammoth.prototype.jump = function (){
   }
 
 };
-
 Mammoth.prototype.doKeyDown = function (event) {
   if(event.keyCode == this.jumpKey){
     this.jump();
   }
+};
+
+Mammoth.prototype.checkFirstPosition = function () {
+
+
+
 };

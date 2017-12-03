@@ -5,15 +5,15 @@ function Game(canvas){
   this.listOfMammoth = [];
   // I add mammoths and the board to the game
   this.board = new Board(this.canvas, this.ctx, "images/background3.png");
-  this.mammoth6 = new Mammoth(this.canvas, this.ctx, "Mammoth 6", 80, -300, 32, "images/Mammoth6.png");
-  this.mammoth10 = new Mammoth(this.canvas, this.ctx, "Mammoth 10", 90, -200, 38, "images/Mammoth10.png");
+  this.mammoth6 = new Mammoth(this.canvas, this.ctx, "Mammoth 6", 70, -300, 32, "images/Mammoth6.png");
+  this.mammoth10 = new Mammoth(this.canvas, this.ctx, "Mammoth 10", 80, -200, 38, "images/Mammoth10.png");
   this.listOfMammoth.push(this.mammoth6);
   this.listOfMammoth.push(this.mammoth10);
 
   // wanna add more mammoths???
   // -----------------  Four mammoths ----------------
-  // this.mammoth23 = new Mammoth(this.canvas, this.ctx, "Mammoth 23", 100, -100, 13, "images/Mammoth23.png");
-  // this.mammoth69 = new Mammoth(this.canvas, this.ctx, "Mammoth 69", 110, 100, 16, "images/Mammoth69.png");
+  // this.mammoth23 = new Mammoth(this.canvas, this.ctx, "Mammoth 23", 90, -100, 13, "images/Mammoth23.png");
+  // this.mammoth69 = new Mammoth(this.canvas, this.ctx, "Mammoth 69", 100, 100, 16, "images/Mammoth69.png");
   // this.listOfMammoth.push(this.mammoth23);
   // this.listOfMammoth.push(this.mammoth69);
 
@@ -55,22 +55,33 @@ Game.prototype.checkWinner = function(){
 // new game
 var game = new Game("canvas");
 
-window.setInterval(function(){
+// document.getElementById('playButton').onClick = function(){
+//   alert("Hola");
+//};
 
-  // lets draw the board and move it
-  game.board.drawSkyline();
-  game.board.moveSkyline();
+// WARNING: If I click many times ... I have many Set intervals
+function play(){
+    var addCanvas = document.getElementById("canvas");
+    addCanvas.classList.add("canvasDesign");
+    // why this does not work?
+    //document.getElementById("canvas").addClass("canvasDesign");
+    window.setInterval(function(){
 
-  // Lets draw the mammmoths
-  game.mammoth6.drawMammoth();
-  this.addEventListener("keydown",game.mammoth6.doKeyDown.bind(game.mammoth6),true);
-  game.mammoth10.drawMammoth();
-  this.addEventListener("keydown",game.mammoth10.doKeyDown.bind(game.mammoth10),true);
-  // -----------------  Four mammoths ----------------
-  // game.mammoth23.drawMammoth();
-  // this.addEventListener("keydown",game.mammoth23.doKeyDown.bind(game.mammoth23),true);
-  // game.mammoth69.drawMammoth();
-  // this.addEventListener("keydown",game.mammoth69.doKeyDown.bind(game.mammoth69),true);
+      // lets draw the board and move it
+      game.board.drawSkyline();
+      game.board.moveSkyline();
 
-  game.checkFirstPosition();
-}, 1000/60);
+      // Lets draw the mammmoths
+      game.mammoth6.drawMammoth();
+      this.addEventListener("keydown",game.mammoth6.doKeyDown.bind(game.mammoth6),true);
+      game.mammoth10.drawMammoth();
+      this.addEventListener("keydown",game.mammoth10.doKeyDown.bind(game.mammoth10),true);
+      // -----------------  Four mammoths ----------------
+      // game.mammoth23.drawMammoth();
+      // this.addEventListener("keydown",game.mammoth23.doKeyDown.bind(game.mammoth23),true);
+      // game.mammoth69.drawMammoth();
+      // this.addEventListener("keydown",game.mammoth69.doKeyDown.bind(game.mammoth69),true);
+
+      game.checkFirstPosition();
+    }, 1000/60);
+}

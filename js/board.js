@@ -45,7 +45,7 @@ Board.prototype.drawSkyline = function () {
 Board.prototype.moveSkyline = function(){
   if(this.angle > 30){
     this.angleRotation *= -1;
-  }else if(this.angle < -30){
+  }else if(this.angle < -20){
     this.angleRotation *= -1;
   }
   this.angle += this.angleRotation;

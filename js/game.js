@@ -5,20 +5,20 @@ function Game(canvas){
   this.listOfMammoth = [];
   // I add mammoths and the board to the game
   this.board = new Board(this.canvas, this.ctx, "images/background3.png");
-  this.mammoth6 = new Mammoth(this.canvas, this.ctx, "Mammoth 6", 70, -300, 32, "images/Mammoth6.png");
-  this.mammoth10 = new Mammoth(this.canvas, this.ctx, "Mammoth 10", 80, -200, 38, "images/Mammoth10.png");
+  this.mammoth6 = new Mammoth(this.canvas, this.ctx, "Mammoth 6", 70, 200, 32, "images/Mammoth6.png");
+  this.mammoth10 = new Mammoth(this.canvas, this.ctx, "Mammoth 10", 80, 100, 38, "images/Mammoth10.png");
   this.listOfMammoth.push(this.mammoth6);
   this.listOfMammoth.push(this.mammoth10);
 
   // wanna add more mammoths???
   // -----------------  Four mammoths ----------------
-  // this.mammoth23 = new Mammoth(this.canvas, this.ctx, "Mammoth 23", 90, -100, 13, "images/Mammoth23.png");
-  // this.mammoth69 = new Mammoth(this.canvas, this.ctx, "Mammoth 69", 100, 100, 16, "images/Mammoth69.png");
-  // this.listOfMammoth.push(this.mammoth23);
-  // this.listOfMammoth.push(this.mammoth69);
+  this.mammoth23 = new Mammoth(this.canvas, this.ctx, "Mammoth 23", 90, -100, 13, "images/Mammoth23.png");
+  this.mammoth69 = new Mammoth(this.canvas, this.ctx, "Mammoth 69", 100, -250, 16, "images/Mammoth69.png");
+  this.listOfMammoth.push(this.mammoth23);
+  this.listOfMammoth.push(this.mammoth69);
 
   // all mammoths should be in the array of mammoths
-  this.firstMammoth = this.listOfMammoth[1];
+  this.firstMammoth = this.listOfMammoth[0];
 }
 
 Game.prototype.checkFirstPosition = function () {
@@ -36,8 +36,8 @@ Game.prototype.checkFirstPosition = function () {
   document.getElementById("1st").innerHTML = game.listOfMammoth[0].name + "  (" + game.listOfMammoth[0].timeFirstPosition +"ms)";
   document.getElementById("2nd").innerHTML = game.listOfMammoth[1].name + "  (" + game.listOfMammoth[1].timeFirstPosition +"ms)";
   // -----------------  Four mammoths ----------------
-  // document.getElementById("3rd").innerHTML = game.listOfMammoth[2].name + "  (" + game.listOfMammoth[2].timeFirstPosition +"ms)";
-  // document.getElementById("4th").innerHTML = game.listOfMammoth[3].name + "  (" + game.listOfMammoth[3].timeFirstPosition +"ms)";
+  document.getElementById("3rd").innerHTML = game.listOfMammoth[2].name + "  (" + game.listOfMammoth[2].timeFirstPosition +"ms)";
+  document.getElementById("4th").innerHTML = game.listOfMammoth[3].name + "  (" + game.listOfMammoth[3].timeFirstPosition +"ms)";
 };
 
 Game.prototype.checkWinner = function(){
@@ -61,11 +61,12 @@ var game = new Game("canvas");
 
 // WARNING: If I click many times ... I have many Set intervals
 function play(){
+    document.getElementById("button").disabled = true;
     var addCanvas = document.getElementById("canvas");
     addCanvas.classList.add("canvasDesign");
     // why this does not work?
     //document.getElementById("canvas").addClass("canvasDesign");
-    window.setInterval(function(){
+    var intervalId = window.setInterval(function(){
 
       // lets draw the board and move it
       game.board.drawSkyline();
@@ -77,11 +78,16 @@ function play(){
       game.mammoth10.drawMammoth();
       this.addEventListener("keydown",game.mammoth10.doKeyDown.bind(game.mammoth10),true);
       // -----------------  Four mammoths ----------------
-      // game.mammoth23.drawMammoth();
-      // this.addEventListener("keydown",game.mammoth23.doKeyDown.bind(game.mammoth23),true);
-      // game.mammoth69.drawMammoth();
-      // this.addEventListener("keydown",game.mammoth69.doKeyDown.bind(game.mammoth69),true);
+      game.mammoth23.drawMammoth();
+      this.addEventListener("keydown",game.mammoth23.doKeyDown.bind(game.mammoth23),true);
+      game.mammoth69.drawMammoth();
+      this.addEventListener("keydown",game.mammoth69.doKeyDown.bind(game.mammoth69),true);
 
       game.checkFirstPosition();
     }, 1000/60);
+
+    setTimeout(function(){
+      //window.clearInterval(intervalId);
+    }, 3000);
+
 }

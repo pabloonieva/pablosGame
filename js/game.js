@@ -1,6 +1,9 @@
-function Game(canvas){
+function Game(canvas, gameTime){
   this.canvas = document.getElementById(canvas);
+  this.gameTime = gameTime;
   this.ctx = this.canvas.getContext('2d');
+  this.ctx.canvas.width  = window.innerWidth;
+  this.ctx.canvas.height = window.innerHeight;
 
   this.listOfMammoth = [];
   // I add mammoths and the board to the game
@@ -38,10 +41,15 @@ Game.prototype.checkFirstPosition = function () {
   // -----------------  Four mammoths ----------------
   document.getElementById("3rd").innerHTML = game.listOfMammoth[2].name + "  (" + game.listOfMammoth[2].timeFirstPosition +"ms)";
   document.getElementById("4th").innerHTML = game.listOfMammoth[3].name + "  (" + game.listOfMammoth[3].timeFirstPosition +"ms)";
+
+  document.getElementById("gameTime").innerHTML = "Game time: " + Math.round(game.gameTime/1000);
 };
 
-Game.prototype.checkWinner = function(){
 
+Game.prototype.checkWinner = function(){
+    //window.alert("The Winner is: " + game.listOfMammoth[0].name + " !!");
+    document.getElementById("winnerImg").src=this.listOfMammoth[0].img.src;
+    document.getElementById("winnerDiv").style.display = "block";
 };
 
 // we can use only one function for first position
@@ -53,7 +61,7 @@ Game.prototype.checkWinner = function(){
 // };
 
 // new game
-var game = new Game("canvas");
+var game = new Game("canvas",60000);
 
 // document.getElementById('playButton').onClick = function(){
 //   alert("Hola");
@@ -62,8 +70,9 @@ var game = new Game("canvas");
 // WARNING: If I click many times ... I have many Set intervals
 function play(){
     document.getElementById("button").disabled = true;
+    document.getElementById("button").style.display = "none";
     var addCanvas = document.getElementById("canvas");
-    addCanvas.classList.add("canvasDesign");
+    addCanvas.style.display = "block";
     // why this does not work?
     //document.getElementById("canvas").addClass("canvasDesign");
     var intervalId = window.setInterval(function(){
@@ -83,11 +92,14 @@ function play(){
       game.mammoth69.drawMammoth();
       this.addEventListener("keydown",game.mammoth69.doKeyDown.bind(game.mammoth69),true);
 
+      game.gameTime -= 1000/60;
       game.checkFirstPosition();
-    }, 1000/60);
+
+    }, 1000/45);
 
     setTimeout(function(){
-      //window.clearInterval(intervalId);
-    }, 3000);
+      window.clearInterval(intervalId);
+      game.checkWinner();
+    }, game.gameTime);
 
 }

@@ -8,13 +8,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <div id="title">
-        <img src="images/title2.png" alt="title">
-      </div>
-    </header>
+    <canvas id="canvas"></canvas>
+
+    <div id="winnerDiv">
+      <h1> The super Winner is: </h1>
+      <img id="winnerImg" src="images/Mammoth10.png" alt="mammoth Winner">
+    </div>
 
     <div id="game">
+
       <div id="clasification">
         <h1>Game clasification</h1>
         <ol>
@@ -24,14 +26,22 @@
           <li id="4th"></li>
         </ol>
       </div>
+
+      <div id="title">
+        <img src="images/title3.png" alt="title">
+      </div>
+
       <div id="firstPosition">
         <h1>First Mammoth</h1>
-        <img id="firstMammoth" src= "images/Mammoth10.png" alt="mammoth Winner">
+        <img id="firstMammoth" src= "images/Mammoth10.png" alt="mammoth Winning">
       </div>
-    </div>
-    <canvas id="canvas" width="800px" height="600px"></canvas>
 
-    <div><button id="button" onclick="play()">Play</button></div>
+    </div>
+
+    <div id="holdPlay">
+      <button id="button" onclick="play()">Play</button>
+      <h1 id="gameTime"> Game time here! </h1>
+    </div>
     <script src="js/mammoth.js"></script>
     <script src="js/board.js"></script>
     <script src="js/game.js"></script>

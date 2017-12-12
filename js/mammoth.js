@@ -10,7 +10,7 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
    this.img.src = image;
    // mammoth variable properties
    this.y = 0;
-   this.vx = 0.3;
+   this.vx = 1;
    this.vy = 0;
    this.timeFirstPosition = 0;
 
@@ -22,9 +22,9 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
    // horizontal speed inteligence with and without collision
    if(!this.collision()){
      if (this.x > 300 || this.x < -300){
-       this.vx += -(this.x/3000);
+       this.vx += -(this.x/6000);
      }else if(this.x > 100 || this.x < -100){
-       this.vx += -(this.x/5000);
+       this.vx += -(this.x/8000);
      }
 
      // if(this.x > 400){ this.vx += -0.04;
@@ -39,12 +39,12 @@ function Mammoth(canvas, ctx, name, size, x, jumpKey, image){
      // }
   }
   // add maximum speed
-  if(this.vx > 6){
-    this.vx = 5.5;
-  }else if(this.vx < - 6){
-    this.vx = -5.5;
+  if(this.vx > 5){
+    this.vx = 4;
+  }else if(this.vx < - 5){
+    this.vx = -4;
   }else{
-    this.x += this.vx;
+    this.x += this.vx*3;
   }
   // vertical speed inteligence (jump and gravity)
   if(this.y > 0){

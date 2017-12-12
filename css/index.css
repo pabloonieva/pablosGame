@@ -37,18 +37,22 @@ body{
   justify-content: space-between;
   height: auto;
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width:100%;
 }
 #game > div{
-  padding: 20px;
+  padding: 40px;
   z-index: 999;
 }
 
 #clasification h1{
   margin: 1px;
+  margin-left: 20px;
   font-size: 27px;
+}
+#clasificationList{
+  list-style: none;
 }
 #title img{
     height: 200px;

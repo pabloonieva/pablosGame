@@ -36,6 +36,7 @@ Game.prototype.checkFirstPosition = function () {
   return b.timeFirstPosition - a.timeFirstPosition;
   });
   //console.log(game.listOfMammoth[0].name + " is winning with a sum of " + game.listOfMammoth[0].timeFirstPosition/(60*game.listOfMammoth.length) + "seconds");
+  //document.getElementById("classificationList").style.listStyle = "initial";
   document.getElementById("1st").innerHTML = game.listOfMammoth[0].name + "  (" + game.listOfMammoth[0].timeFirstPosition +"ms)";
   document.getElementById("2nd").innerHTML = game.listOfMammoth[1].name + "  (" + game.listOfMammoth[1].timeFirstPosition +"ms)";
   // -----------------  Four mammoths ----------------
